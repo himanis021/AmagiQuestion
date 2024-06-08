@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+}
+apply plugin:'java'
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+configurations.all {
+    resolutionStrategy {
+        force 'com.fasterxml.jackson.core:jackson-databind:2.10.0'
+    }
+
+    exclude group: "log4j", module: "log4j"
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    // https://mvnrepository.com/artifact/org.json/json
+    implementation(group: 'org.json', name: 'json', version: '20190722')
+    // https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
+    implementation(group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1')
+    // https://mvnrepository.com/artifact/org.eclipse.jetty.websocket/websocket-client
+    implementation( group: 'org.eclipse.jetty.websocket', name: 'websocket-client', version: '9.4.41.v20210516')
+    // https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path
+    implementation(group: 'com.jayway.jsonpath', name: 'json-path', version: '2.4.0')
+    implementation group: 'com.octomix.josson', name: 'josson', version: '1.4.6'
+
+}
+
+test {
+    useJUnitPlatform()
+}
